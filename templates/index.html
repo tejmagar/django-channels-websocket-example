@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket example</title>
+</head>
+
+<style>
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+    }
+
+    #number {
+        font-size: 1.6rem;
+        color: white;
+    }
+
+</style>
+<body>
+<p id="number"></p>
+<script>
+    const socket = new WebSocket("ws://localhost:8000/ws/");
+
+    socket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        console.log(data);
+        document.querySelector('#number').innerHTML = data.number;
+    }
+</script>
+</body>
+</html>
